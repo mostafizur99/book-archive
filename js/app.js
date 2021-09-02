@@ -1,16 +1,19 @@
 
 const searchBook = () => {
     // clear-previous displayed items
-    document.getElementById("error-message").textContent = '';
-    document.getElementById('search-result').textContent = '';
-    document.getElementById('seach-number').textContent = '';
+    clearPrediousData('error-message');
+    clearPrediousData('search-result');
+    clearPrediousData('seach-number');
 
     const searchField = document.getElementById('search-input');
     const searchText = searchField.value;
     searchField.value = '';
 
     if (searchText.length > 0) {
+        // turn on spinner
         document.getElementById("spinner").classList.remove("d-none");
+
+        // fetch data 
         const url = `https://openlibrary.org/search.json?q=${searchText}`;
         fetchedData(url)
             .then(data => displaySearchResult(data));
@@ -20,6 +23,12 @@ const searchBook = () => {
     }
 };
 
+// function for clearing previous data
+const clearPrediousData = inputId => {
+    const getField = document.getElementById(inputId);
+    getField.textContent = '';
+}
+
 // function for data fetching 
 const fetchedData = async (url) => {
     const res = await fetch(url);
@@ -28,7 +37,7 @@ const fetchedData = async (url) => {
 };
 
 const displaySearchResult = data => {
-    // turn of spinner
+    // turn off spinner
     document.getElementById("spinner").classList.add("d-none");
 
     const { docs, numFound } = data;
