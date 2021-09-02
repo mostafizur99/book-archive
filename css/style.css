@@ -1,0 +1,17 @@
+.form-control {
+    border: 1px solid #0dcaf0;
+}
+span#search-btn {
+    background: #1e8ea5;
+    color: #000;
+}
+img{
+    width: 304px;
+    height: 350px;
+}
+.text-color{
+    color: #1e8ea5;
+}
+.custom-bg{
+    background: #0dcaf014;
+}
